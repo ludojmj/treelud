@@ -1,5 +1,7 @@
-# treelud
+# [treelud](https://github.com/ludojmj/treelud)
+
 Yet another tree view in a web browser.
+
  - HTTP Server code: [Python](https://www.python.org/)
  - Client code: [AngularJS](https://angularjs.org/)
  - Data sources: local and SSH file systems
@@ -21,6 +23,7 @@ Install [Node.js](https://nodejs.org/) and then:
 Your web site is ready!
 
 You may fix paths to start with. Go to:
+
  - `treelud/src/assets/config.json` before building with grunt
  - `treelud/build/assets/config.json` after a grunt build
  - `treelud/bin/assets/config.json` after a grunt compile
@@ -35,6 +38,7 @@ You may fix paths to start with. Go to:
 ## Configuring the HTTP server
 
 Fix host and port server infos and SSH server infos in:
+
  - `treelud/server/server.py`
 
 N.B. If you want to connect to your host from a different device (your mobile phone or your tablet), you must set your server net address (e.g. '192.168.0.12') instead of 'localhost' or '127.0.0.1'.
@@ -58,6 +62,7 @@ Launch the http server:
 ## Go!
 
 Eventually, in your web browser (preferably Firefox), open:
+
  - `http://192.168.0.12:8002/build/` if you did a grunt build
  - `http://192.168.0.12:8002/bin/` if you did a grunt compile
  - `http://127.0.0.1:8002/` if you did not previously fix host and port server infos
