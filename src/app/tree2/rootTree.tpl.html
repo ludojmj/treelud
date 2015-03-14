@@ -1,0 +1,36 @@
+<h1 class="txtcenter h4-like" data-ng-bind="pageTitle"></h1>
+
+<section>
+
+    <!-- local sub tree -->
+    <div class="col w50">
+        <div class="row">
+            <input type="text" placeholder="Local filter" data-ng-model="localFolderFilter">
+            <span>Local: <span data-ng-bind="localTitle"></span></span>
+        </div>
+        
+        <div class="panel" data-ng-class="{ 'panel1': selectedTab.local }" data-ng-repeat="item in localTree" data-ng-include="'tree2/subTrees/localSubTree.tpl.html'"></div>
+    </div>
+
+    <!-- remote sub tree -->
+    <!-- disabled if unique local tree -->
+    <div class="col w50" data-ng-if="!selectedTab.local">
+        <div class="row">
+            <input type="text" placeholder="Remote filter" data-ng-model="remoteFolderFilter">
+            <span>Remote: <span data-ng-bind="remoteTitle"></span></span>
+        </div>
+        
+        <div class="panel" data-ng-repeat="item in remoteTree" data-ng-include="'tree2/subTrees/remoteSubTree.tpl.html'"></div>
+    </div>
+
+</section>
+
+<!-- Messages -->
+<section class="msg" data-ng-class="{ 'msg-info': msg.info, 'msg-error': msg.error, 'msg-success': msg.success }">
+    <ol>
+        <li data-ng-repeat="msg in msgList">
+            <span data-ng-bind="msg.text" data-ng-class="{ 'msg-info': msg.info, 'msg-error': msg.error, 'msg-success': msg.success }"></span>
+            <a href="" class="icon-cross" data-ng-click="msg.closex()"></a>
+        </li>
+    </ol>
+</section>

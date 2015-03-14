@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html data-ng-app="treelud" data-ng-controller="AppCtrl">
+<head>
+    <title data-ng-bind="pageTitle">treelud</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta property="og:title" content="treelud" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="localhost" />
+    <meta property="og:description" content="treelud." />
+
+    <!-- compiled CSS --><% styles.forEach( function ( file ) { %>
+    <link rel="stylesheet" href="<%= file %>" /><% }); %>
+
+    <!-- compiled JavaScript --><% scripts.forEach( function ( file ) { %>
+    <script src="<%= file %>"></script><% }); %>
+</head>
+<body id="body" class="w90 center">
+    <div class="row">
+        <nav id="navigation" role="navigation">
+            <input type="checkbox" id="toggle-nav" title="menu">
+            <label for="toggle-nav" onclick></label>
+            <ul>
+                <li><a data-ng-class="{'activeTab': selectedTab.local}" data-ui-sref="tree1">Local</a></li>
+                <li><a data-ng-class="{'activeTab': selectedTab.localremote}" data-ui-sref="tree2">Local/Remote</a></li>
+                <li><a data-ng-class="{'activeTab': selectedTab.lab}" data-ui-sref="lab">Lab</a></li>
+            </ul>
+        </nav>
+        <i class="txtright">treelud v<%= version %></i>
+    </div>
+    <div data-ui-view="main"></div>
+    <!-- <script src="http://localhost:35729/livereload.js"></script> -->
+</body>
+</html>

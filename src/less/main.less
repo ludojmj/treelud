@@ -1,0 +1,24 @@
+/**
+ * This is the main application stylesheet. It should include or import all
+ * stylesheets used throughout the application as this is the only stylesheet in
+ * the Grunt configuration that is automatically processed.
+ */
+
+/**
+ * First, we include the Raphael Goetter's LESS files. Only the ones used in the
+ * project should be imported as the rest are just wasting space.
+ */
+ 
+@import '../../vendor/knacss/less/_00-config.less';
+@import '../../vendor/knacss/less/_01-base.less';
+@import '../../vendor/knacss/less/_02-helpers.less';
+@import '../../vendor/knacss/less/_03-grids.less';
+@import '../../vendor/knacss/less/_06-icons.less';
+
+/**
+ * This is our main variables file. We must include it last so we can overwrite any variable
+ * definitions in our imported stylesheets.
+ */
+
+@import 'variables.less';
+

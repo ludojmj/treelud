@@ -1,0 +1,231 @@
+ul {
+    list-style-type: none;
+}
+a {
+    text-decoration: none;
+}
+.activeTab {
+    color: #000 !important;
+    background: #f0ad4e !important;
+    border: 2px solid #007f0e;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+}
+.msg {
+    position: fixed;
+    bottom: 10%;
+    left: 50%;
+    transform: translate(-50%, 0%);
+    background: #fff;
+}
+.msg-info {
+    color: #fff;
+    background: #5bc0de;
+    padding-left: .5em;
+    padding-right: .5em;
+}
+.msg-error {
+    color: #fff;
+    background: #d9534f;
+    padding-left: .5em;
+    padding-right: .5em;
+}
+.msg-success {
+    color: #fff;
+    background: #5cb85c;
+    padding-left: .5em;
+    padding-right: .5em;
+}
+.panel {
+    white-space: nowrap;
+    position: absolute;
+    width: 45%;
+    height: 75%;
+    background: #ddeedd;
+    border: 1px solid #256937;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    padding: 10px;
+    overflow: auto;
+}
+.panel1 {
+    width: 90%;
+}
+.itemselected {
+    color: #fff !important;
+    background: #337ab7;
+    font-weight: bold;
+    padding: .1em .5em;
+}
+.itemdeleted {
+    text-decoration: line-through;
+}
+
+/* Overriding vendor/knacss */
+/* BEGIN */
+
+.h4-like {
+    color: #256937;
+}
+.icon-uncheck:before {
+    color: #d9534f;
+}
+.icon-down:before {
+    color: #f0ad4e;
+}
+.icon-bull3:before {
+    color: #f0ad4e;
+}
+.icon-losange:before {
+    color: #5bc0de;
+}
+
+.icon-cross {
+    background: #fff;
+    border: 2px solid #d9534f;
+    padding-left: 0.2em;
+}
+.icon-nav {
+    background: #fff;
+    border: 2px solid #256937;
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+}
+.icon-bracket1,
+.icon-bracket2 {
+    background: #fff;
+    border: 2px solid #256937;
+    padding-left: 0.6em;
+}
+
+/* END */
+/* Overriding vendor/knacss */
+
+/* Raphael Goetter's simple nav ==> http://www.goetter.fr/nav/ */
+
+/* Menu */
+/* Switching box model for all elements */
+* {
+    -webkit-box-sizing: border-box;
+       -moz-box-sizing: border-box;
+            box-sizing: border-box;
+}
+
+
+/* Responsive Navigation styles begin here */
+[id="toggle-nav"] {display: none}
+
+#navigation li { display: inline; }
+#navigation a:link,
+#navigation a:visited {
+    display: inline-block;
+    background: #007f0e;
+    color: #fff;
+    text-decoration: none;
+    padding: .1em 1em;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+}
+
+#navigation li a:focus,
+#navigation a:hover,
+#navigation a:active {
+    background: #f0ad4e;
+    color: #000;
+    text-decoration: none;
+}
+
+@media (max-width: 800px) {
+
+    /* Theming nav */    
+    [id=navigation] ul {
+        position: absolute;
+        width: 70%;
+        top: 1rem; 
+        z-index: 1;
+        
+        /* translate closed nav with hardware acceleration */
+        -webkit-transform: translateX(-110%) translateZ(0);
+        -ms-transform: translateX(-110%) translateZ(0);
+                transform: translateX(-110%) translateZ(0);
+        -webkit-transition: -webkit-transform .3s cubic-bezier(.72,.89,.28,1.39);
+                transition: transform .3s cubic-bezier(.72,.89,.28,1.39);
+
+        /* global styles */
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+    [id=navigation] a {
+        display: block;
+        padding: 1.2rem;
+        color: #fff;
+        background: #114b69;
+        text-decoration: none;
+        margin-bottom: 2px;
+    }
+    [id=navigation] a:hover, 
+    [id=navigation] a:focus,
+    [id=navigation] a:active
+    {
+        background: #222;
+    }
+
+    /* Theming opened nav */
+    /* handling clic with CSS3 checked */
+    [id="toggle-nav"]:checked ~ ul {
+        -webkit-transform: translateX(0) translateZ(0);
+        -ms-transform: translateX(0) translateZ(0);
+                transform: translateX(0) translateZ(0);
+    }
+
+    /* Global styling nav button */    
+    [for="toggle-nav"] {
+        position: absolute;
+            top: .8rem; right: 1rem;
+        z-index: 1;
+        height: 4rem; width: 4rem;
+        background-color: transparent;
+        
+        padding: 0;
+        outline: 0;
+        border: 1px solid #333;
+        border-radius: 50%;
+        cursor: pointer;
+        -webkit-tap-highlight-color:rgba(0,0,0,0);
+        -webkit-transition: -webkit-transform .2s;
+                transition: transform .2s;
+    }
+
+    [for="toggle-nav"]::after, [for="toggle-nav"]::before {
+        content: "";
+        position: absolute;
+        top: 15%; right: 40%; bottom: 15%; left: 40%;
+        background-color: #333;
+        border-radius: 10px;
+        -webkit-transition: -webkit-transform .2s;
+                transition: transform .2s;
+    }
+    [for="toggle-nav"]::before {
+        top: 40%; right: 15%; bottom: 40%; left: 15%;
+    }
+
+
+    /* Theming opened nav button */    
+    [id="toggle-nav"]:checked + label,
+    [id="toggle-nav"]:checked + label::before {
+        -webkit-transform: rotate(90deg) translateZ(0);
+        -ms-transform: rotate(90deg) translateZ(0);
+                transform: rotate(90deg) translateZ(0);
+    }
+
+
+    /* Hide alternate text except from screen readers */
+    .visually-hidden {
+        position: absolute !important;
+        clip: rect(1px, 1px, 1px, 1px);
+        overflow: hidden;
+        height: 1px;
+        width: 1px;
+    }
+}

@@ -1,0 +1,32 @@
+<div>
+    <!-- folder icon (opened/closed) -->
+    <a href="" data-ng-if="item.isfolder" class="icon" data-ng-class="{ 'icon-down': item.isopen, 'icon-bull3': !item.isopen }" data-ng-click="toggleFolder( item, true )"></a>
+    <!-- file icon -->
+    <a data-ng-if="!item.isfolder && !item.islocked" class="icon icon-losange"></a>
+    <!-- label -->
+    <a data-ng-if="item.islocked" class="icon icon-uncheck" data-ng-bind="item.path"></a>
+    <a data-ng-if="!item.islocked" href data-ng-class="{ 'itemselected': item.selected, 'itemdeleted': item.deleted }" data-ng-click="toggleSelect( item, true )" data-ng-bind="item.path | basename:true:this"></a>
+    
+    <span data-ng-if="!item.notification.length && !item.deleted">
+        <!-- action delete -->
+        <a href="" data-ng-if="!item.islocked && !item.isfolder && item.selected" class="icon icon-cross" data-ng-click="deleteFile( item, true )"></a>
+        <!-- action open -->
+        <a href="" data-ng-if="!item.islocked && !item.isfolder && item.selected" class="icon icon-nav" data-ng-click="openFile( item )"></a>
+        <!-- action send -->
+        <a href="" data-ng-if="!selectedTab.local && !item.islocked && !item.isfolder && item.selected" class="icon icon-bracket2" data-ng-click="sendFile( item, true )"></a>
+    </span>
+
+
+
+
+    <!-- notification -->
+    <a data-ng-if="item.notification.length" class="msg-info" data-ng-bind="item.notification"></a>
+
+    <a href="" class="msg-success" data-ng-if="!item.deleted && item.toDelete" data-ng-click="cancel( item, true )">Cancel</a>
+    <a href="" class="msg-error" data-ng-if="!item.deleted && item.toDelete" data-ng-click="confirm( item, true )">Confirm</a>
+
+    <!-- tree -->
+    <ul>
+        <li data-ng-repeat="item in item.children | filter:localFolderFilter" data-ng-include="'tree2/subTrees/localSubTree.tpl.html'"></li>
+    </ul>
+</div>
