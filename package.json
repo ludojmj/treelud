@@ -5,12 +5,12 @@
   "homepage": "https://github.com/ludojmj/treelud",
   "licenses": {
     "type": "MIT",
-    "url": "https://github.com/ludojmj/treelud/blob/master/README.md"
+    "url": "https://github.com/ludojmj/treelud/blob/master/LICENSE"
   },
   "bugs": "https://github.com/ludojmj/treelud/issues",
   "repository": {
     "type": "git",
-    "url": "git@github.com:ludojmj/treelud.git"
+    "url": "https://github.com/ludojmj/treelud.git"
   },
   "todoNodeJsdependencies": {
     "fs": "~0.0.2",
