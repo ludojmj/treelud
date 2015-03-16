@@ -217,6 +217,17 @@ class MyHandler(SimpleHTTPServer.SimpleHTTPRequestHandler):
     
     """ MyHandler """
 
+    def error(self, errmsg):
+        #
+        # Get error message from exception (string format depends whether the request runs on *nix or win)
+        #
+        cod = 'utf-8'
+        if os.name == 'nt':
+            cod = 'cp1252'
+
+        return str(errmsg).decode(cod)
+
+
     def build_response(self, http_code, msg):
         #
         # Add http headers
@@ -227,7 +238,7 @@ class MyHandler(SimpleHTTPServer.SimpleHTTPRequestHandler):
         self.end_headers()
         if (http_code == 400):
             resp = {}
-            resp['error'] = str(msg)
+            resp['error'] = self.error(str(msg))
         else:
             resp = msg
         self.wfile.write(json.dumps(resp))
