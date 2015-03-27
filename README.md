@@ -12,14 +12,14 @@ Yet another tree view in a web browser.
 
 Install [Node.js](https://nodejs.org/) and then:
 
-    ```sh
+```sh
     $ git clone https://github.com/ludojmj/treelud.git
     $ cd treelud
     $ sudo npm -g install grunt-cli karma bower
     $ npm install
     $ bower install
     $ grunt
-    ```
+```
 Your web site is ready!
 
 You may fix paths to start with. Go to:
@@ -28,12 +28,12 @@ You may fix paths to start with. Go to:
  - `treelud/build/assets/config.json` after a grunt build
  - `treelud/bin/assets/config.json` after a grunt compile
 
-    ```
+```
     {
         "LOCALPATH": "/home/mauricemoss",
         "REMOTEPATH": "/www"
     }
-    ```
+```
 
 ## Configuring the HTTP server
 
@@ -43,7 +43,7 @@ Fix host and port server infos and SSH server infos in:
 
 N.B. If you want to connect to your host from a different device (your mobile phone or your tablet), you must set your server net address (e.g. '192.168.0.12') instead of 'localhost' or '127.0.0.1'.
 
-    ```
+```
     THIS_HOST = '192.168.0.12'
     THIS_PORT = 8002
 
@@ -51,13 +51,13 @@ N.B. If you want to connect to your host from a different device (your mobile ph
     SSH_PORT = 22
     SSH_USER = 'moss.m'
     SSH_PASSW = 'lonelyroad'
-    ```
+```
 
 Launch the http server:
 
-    ```sh
+```sh
     python server/server.py
-    ```
+```
 
 ## Go!
 
@@ -81,21 +81,21 @@ Eventually, in your web browser (preferably Firefox), open:
 
 Basically, there's a master tree that includes a sub-tree:
 
-    ```
+```
     <div>
         <div ng-repeat="item in localTree" ng-include="'subTree.tpl.html'"></div>
     </div>
-    ```
+```
 
 And the sub-tree recursively includes itself:
 
-    ```
+```
     <div>
         <ul>
             <li ng-repeat="item in item.children" ng-include="'subTree.tpl.html'"></li>
         </ul>
     </div>
-    ```
+```
 
 We do it twice: once for the local directory, again for the remote (SSH) directory.
 
