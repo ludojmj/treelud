@@ -102,7 +102,7 @@ We do it twice: once for the local directory, again for the remote (SSH) directo
 ## Project Structure
 
  - AngularJS: I tried to follow Josh David Miller's opinionated kickstarter for AngularJS projects: [ngbp](https://github.com/ngbp/ngbp).
- - HTTP Server: There's only one Python script (server.py). In order to get SSH access, this script uses [paramiko] (https://pypi.python.org/pypi/paramiko) and [python-ecdsa](https://pypi.python.org/pypi/ecdsa).
+ - HTTP Server: There's only one Python script (server.py). In order to get SSH access, this script uses [paramiko] (https://pypi.python.org/pypi/paramiko), [pycrypto](https://pypi.python.org/pypi/pycrypto) and [python-ecdsa](https://pypi.python.org/pypi/ecdsa).
 
 ***
 
