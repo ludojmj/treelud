@@ -7,7 +7,8 @@
 
 Requirements
 ------------
- - Python <http://www.python.org/> created in the early 1990s by Guido van Rossum
+ - Python <https://www.python.org/> created in the early 1990s by Guido van Rossum
+ - pycrypto <https://pypi.python.org/pypi/pycrypto>
  - paramiko <https://pypi.python.org/pypi/paramiko> Copyright (c) 2003-2011 Robey Pointer <robeypointer@gmail.com>
  - python-ecdsa <https://pypi.python.org/pypi/ecdsa> Copyright (c) 2010 Brian Warner
 
