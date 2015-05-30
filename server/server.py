@@ -297,7 +297,6 @@ class MyHandler(SimpleHTTPServer.SimpleHTTPRequestHandler):
         # Open a file (on the server)
         #
         if action == 'openfile':
-            ret = 0
             path = params['path']
             try:
                 if os.name == 'posix':
