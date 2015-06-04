@@ -127,36 +127,30 @@ class BuildDict():
         # Convert local path or remote path into dictionary
         #
         with SystemAccess(localfs) as conn:
-            
             # Init root folder
             result = { 'path': root, 'isfolder': True, 'isopen': True, 'children': [] }
 
-            # Browsing folders first...
             try:
-                dir_list = sorted(conn.listdir(root))
-                for x in dir_list:
+                list = sorted(conn.listdir(root))
+                file_list = []
+                # 1 - Let's get all sorted folders and files
+                for x in list:
                     full_path = u'{0}/{1}'.format(root, x)
                     if self.isdir(conn, full_path):
+                        # 2 - Let's return folders first
                         result['children'].append( { 'path': full_path, 'isfolder': True, 'isopen': False } )
-            except OSError, e :
+                    else:
+                        # Meanwhile we keep files by our side
+                        file_list.append(full_path)
+                for x in file_list:
+                    # 3 - Eventually we return files
+                    result['children'].append( { 'path': x, 'isfolder': False, 'isopen': False } )
+            except (OSError, IOError, UnicodeDecodeError) as e:
                 # Forbidden folder on local fs
-                result['children'].append(self.error(e))
-                return result
-            except IOError, e:
                 # Forbidden folder on remote fs
-                result['children'].append(self.error(e))
-                return result
-            except UnicodeDecodeError, e:
                 # Unreadable file
                 result['children'].append(self.error(e))
                 return result
-
-            # ...Then files
-            fic_list = sorted(conn.listdir(root))
-            for x in fic_list:
-                full_path = u'{0}/{1}'.format(root, x)
-                if not self.isdir(conn, full_path):
-                    result['children'].append( { 'path': full_path, 'isfolder': False, 'isopen': False } )
 
             return result
 
@@ -172,15 +166,9 @@ class BuildDict():
             if self.isdir(conn, root):
                 try:
                     dir_list = conn.listdir(root)
-                except OSError, e :
+                except (OSError, IOError, UnicodeDecodeError) as e:
                     # Forbidden folder on local fs
-                    result['children'].append(self.error(e))
-                    return result
-                except IOError, e:
                     # Forbidden folder on remote fs
-                    result['children'].append(self.error(e))
-                    return result
-                except UnicodeDecodeError, e:
                     # Unreadable file
                     result['children'].append(self.error(e))
                     return result
@@ -256,11 +244,7 @@ class MyHandler(SimpleHTTPServer.SimpleHTTPRequestHandler):
             else:
                 result = BuildDict().fullfs_to_dict(path, localfs, False)
             self.build_response(200, result)
-        except paramiko.SSHException, e:
-            self.build_response(400, e)
-        except paramiko.AuthenticationException, e:
-            self.build_response(400, e)
-        except socket.error, e:
+        except (paramiko.SSHException, paramiko.AuthenticationException, socket.error) as e:
             self.build_response(400, e)
 
 
@@ -307,9 +291,9 @@ class MyHandler(SimpleHTTPServer.SimpleHTTPRequestHandler):
                     # Not tested
                     subprocess.check_output(['open', path], stderr=subprocess.STDOUT, shell=False)
                 self.build_response(200, { 'info': 'File opened successfully.' })
-            except subprocess.CalledProcessError, e:
+            except subprocess.CalledProcessError as e:
                 self.build_response(400, e.output.split(':')[-1])
-            except WindowsError, e:
+            except WindowsError as e:
                 self.build_response(400, e)
             return
 
@@ -322,7 +306,7 @@ class MyHandler(SimpleHTTPServer.SimpleHTTPRequestHandler):
                 localfs = params['localfs']
                 FsInteract().delete(path, localfs)
                 self.build_response(200, { 'info': 'File deleted successfully.' })
-            except Exception, e:
+            except Exception as e:
                 self.build_response(400, e)
             return
 
@@ -340,7 +324,7 @@ class MyHandler(SimpleHTTPServer.SimpleHTTPRequestHandler):
                 else:
                     FsInteract().get(source, destination)
                 self.build_response(201, { 'info': 'File copied successfully.' }) # Created
-            except Exception, e:
+            except Exception as e:
                 self.build_response(400, e)
             return
 
@@ -390,4 +374,3 @@ if __name__ == '__main__':
         httpd.serve_forever()
     except KeyboardInterrupt:
         print 'KeyboardInterrupt'
-
