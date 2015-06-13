@@ -35,7 +35,7 @@ You may fix paths to start with. Go to:
     }
 ```
 
-## Configuring the HTTP server
+## Configuring the HTTP server (PYTHON)
 
 Fix host and port server infos and SSH server infos in:
 
@@ -59,13 +59,49 @@ Launch the http server:
     python server/server.py
 ```
 
-## Go!
+## Go! (with the Python server)
 
 Eventually, in your web browser (preferably Firefox), open:
 
- - `http://192.168.0.12:8002/build/` if you did a grunt build
- - `http://192.168.0.12:8002/bin/` if you did a grunt compile
- - `http://127.0.0.1:8002/` if you did not previously fix host and port server infos
+ - `http://192.168.0.12:8003/build/` if you did a grunt build
+ - `http://192.168.0.12:8003/bin/` if you did a grunt compile
+ - `http://127.0.0.1:8003/` if you did not previously fix default host and port server infos
+
+***
+
+## Configuring the HTTP server (NODEJS)
+
+Fix host and port server infos and SSH server infos in:
+
+ - `treelud/server/nodeserv/config.js`
+
+N.B. If you want to connect to your host from a different device (your mobile phone or your tablet), you must set your server net address (e.g. '192.168.0.12') instead of 'localhost' or '127.0.0.1'.
+
+```
+    module.exports = {
+      'THIS_HOST': '192.168.0.12',
+      'THIS_PORT': 8003,
+
+      'SSH_SERVER': '192.168.0.24',
+      'SSH_PORT': 22,
+      'SSH_USER': 'moss.m',
+      'SSH_PASSW': 'lonelyroad',
+    };
+```
+
+Launch the http server:
+
+```sh
+    nodejs server/nodesrv/server.js
+```
+
+## Go! (with the NodeJs server)
+
+Eventually, in your web browser (preferably Firefox), open:
+
+ - `http://192.168.0.12:8003/build/` if you did a grunt build
+ - `http://192.168.0.12:8003/bin/` if you did a grunt compile
+ - `http://127.0.0.1:8003/` if you did not previously fix default host and port server infos
 
 ***
 
