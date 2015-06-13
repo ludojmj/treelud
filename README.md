@@ -3,6 +3,7 @@
 Yet another tree view in a web browser.
 
  - HTTP Server code: [Python](https://www.python.org/)
+ - HTTP Server code: [Node.js](https://nodejs.org/)
  - Client code: [AngularJS](https://angularjs.org/)
  - Data sources: local and SSH file systems
 
@@ -73,7 +74,7 @@ Eventually, in your web browser (preferably Firefox), open:
 
 Fix host and port server infos and SSH server infos in:
 
- - `treelud/server/nodeserv/config.js`
+ - `treelud/server/nodesrv/config.js`
 
 N.B. If you want to connect to your host from a different device (your mobile phone or your tablet), you must set your server net address (e.g. '192.168.0.12') instead of 'localhost' or '127.0.0.1'.
 
